@@ -25,7 +25,7 @@ namespace Biblioteca
             return (NumeroPagine*costoStampa)+costoFisso;
         }
 
-        public 
+         
 
 
     }
