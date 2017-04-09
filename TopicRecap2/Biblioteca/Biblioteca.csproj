@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="Autore.cs" />
     <Compile Include="Editore.cs" />
-    <Compile Include="Isbn.cs" />
     <Compile Include="Libro.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

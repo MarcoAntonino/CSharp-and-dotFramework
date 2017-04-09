@@ -22,10 +22,21 @@ namespace Biblioteca
             Editore e1 = new Editore("Mondadori", "Via Roma 14, Torino", "0118134567", "info@mondadori.it", "www.mondadori.it");
             System.Console.WriteLine(e1);
 
+            DateTime dPubl1 = new DateTime(1921, 12, 12);
+            Libro l1 = new Libro(
+                "La tigre e il Dragone", "fantasy", "12343254", 300,
+                dPubl1, e1, a1);
 
+            System.Console.WriteLine(l1);
 
-
+            System.Console.Write(string.Concat(a2.Iniziali,".", " ", a2.Cognome, " ",
+                                     "is alive? ",
+                                     a2.isAlive));
             System.Console.ReadKey();
+
+            
+
+
 
         }
     }

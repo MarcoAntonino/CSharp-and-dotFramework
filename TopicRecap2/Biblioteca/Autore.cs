@@ -61,7 +61,21 @@ namespace Biblioteca
 
         }
 
+        public string NominativoAutore()
+        {
+            string inizialeNome;            
+            string nominativo;
+            this.Cognome = Cognome;
 
+
+            inizialeNome = Nome.Substring(0, 1);
+            inizialeNome = inizialeNome.ToUpper();
+
+            nominativo= inizialeNome,"."," ",Cognome;
+
+            return nominativo;
+
+        }
 
 
 
