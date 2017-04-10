@@ -17,7 +17,25 @@ namespace Es12Matches
         public Form1()
         {
             InitializeComponent();
-            MatchesOfDay.DataSource = loadMatchList();
+            
+            //MatchesOfDay.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //List<Match> matches = loadMatchList();
+            //var m = (from m in matches
+            //         orderby m.IdMatch
+            //         select new
+            //         {
+            //             IdMatch = m.IdMatch,
+            //             MatchName = string.Concat(m.HomeTeamName, " vs ", m.AwayTeamName),
+            //             MatchDate = m.MatchDate.ToString("yyyy-MM-dd HH:mm")
+            //         }
+            //        ).ToList();
+
+            MatchesOfDay.DataSource = loadMatchList().Select(m => new
+            {
+                IdMatch = m.IdMatch,
+                MatchName = string.Concat(m.HomeTeamName, " vs ", m.AwayTeamName),
+                MatchDate = m.MatchDate.ToString("yyyy-MM-HH:mm")
+            }) .OrderBy(mbox => mbox.IdMatch).ToList();
         }
 
         private string readingMatches()
@@ -34,6 +52,12 @@ namespace Es12Matches
             MatchesList ml = js.Deserialize<MatchesList>(readingMatches());
             return ml.Matches;
 
+        }
+
+        private void btLoadLiveMatches_Click(object sender, EventArgs e)
+        {
+            var liveMatchesList = LoadLiveMatchList();
+            
         }
     }
 }

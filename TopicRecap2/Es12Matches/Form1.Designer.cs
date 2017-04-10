@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.MatchesOfDay = new System.Windows.Forms.DataGridView();
+            this.btLoadLiveMatches = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.MatchesOfDay)).BeginInit();
             this.SuspendLayout();
             // 
@@ -38,16 +39,26 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MatchesOfDay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MatchesOfDay.Location = new System.Drawing.Point(12, 12);
+            this.MatchesOfDay.Location = new System.Drawing.Point(12, 100);
             this.MatchesOfDay.Name = "MatchesOfDay";
-            this.MatchesOfDay.Size = new System.Drawing.Size(240, 150);
+            this.MatchesOfDay.Size = new System.Drawing.Size(752, 156);
             this.MatchesOfDay.TabIndex = 0;
+            // 
+            // btLoadLiveMatches
+            // 
+            this.btLoadLiveMatches.Location = new System.Drawing.Point(612, 13);
+            this.btLoadLiveMatches.Name = "btLoadLiveMatches";
+            this.btLoadLiveMatches.Size = new System.Drawing.Size(151, 53);
+            this.btLoadLiveMatches.TabIndex = 1;
+            this.btLoadLiveMatches.Text = "Load Live Matches";
+            this.btLoadLiveMatches.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(776, 268);
+            this.Controls.Add(this.btLoadLiveMatches);
             this.Controls.Add(this.MatchesOfDay);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -59,6 +70,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView MatchesOfDay;
+        private System.Windows.Forms.Button btLoadLiveMatches;
     }
 }
 
