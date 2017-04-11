@@ -63,15 +63,48 @@ namespace TourDelCavaliere
             //bisogna dare a ogni metodo il suo territorio di intervento
         }
 
-        private void MoveHorse(int[,] board, Position currentPosition, int doneMoves)
+        int[,] Offset = new int[8, 2] { { 2, 1}, { 1, 2},
+                                            {-1, 2}, {-2, 1},
+                                            {-2,-1}, {-1,-2},
+                                            { 1,-2}, { 2,-1} };
+
+        private bool MoveHorse(int[,] board, Position currentPosition, int doneMoves)
         {
-            throw new NotImplementedException();
+            if (doneMoves == BoardSize * BoardSize)
+                return true;
+            
+            for (int i=0; i<8;i++)
+            {
+                Position NextPosition = currentPosition;
+                NextPosition.col += Offset[i, 0];
+                NextPosition.row += Offset[i, 1];
+                if (IsValid(board, NextPosition))
+                {
+                    MarkMove(board, NextPosition, ref doneMoves);
+                    if (MoveHorse(board, NextPosition, doneMoves))
+                        return true;
+                    //nelle procedure ricorsive, il vero aspetto critivo è quando terminare la ricorsione
+                    UnMarkMove(board, NextPosition, ref doneMoves);
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsValid (int [,] board, Position p)
+        {
+            if (p.row < 0 || p.row >= BoardSize || p.col < 0 || p.col >= BoardSize)
+                return false;
+            if (board[p.row, p.col] != 0)
+                return false;
+            return true;
         }
 
         private void MarkMove(int[,] board, Position currentPosition, ref int doneMoves)
         {
             doneMoves++;
             board[currentPosition.row, currentPosition.col] = doneMoves;
+            ShowBoard(board);
 
         }
 
@@ -79,6 +112,43 @@ namespace TourDelCavaliere
         {
             board[currentPosition.row, currentPosition.col] = 0;
             doneMoves--;
+
+        }
+
+        private void ShowBoard(int [,] Board)
+        {
+            for (int r=0; r<BoardSize; r++)
+            {
+                for (int c=0; c<BoardSize; c++)
+                {
+                    string TextBoxName = "txt" + r.ToString() + "_" + c.ToString();
+                    TextBox t = (TextBox)this.Controls[TextBoxName];
+                    if (t==null)
+                    {                    
+                        t = new TextBox();
+                        t.Name = TextBoxName;
+                        t.Size = new Size(26, 22);
+                        t.Location = new Point(10 + c * 26, 50 + r * 22);
+                        this.Controls.Add(t);
+                    }
+                    if (Board[r,c]==0)
+                    {
+                        t.Text = "";
+                        t.BackColor = Color.White;
+                    }
+                    else
+                    {
+                        t.Text = String.Format("{0:D2}", Board[r,c]);
+                        t.BackColor = Color.LightGreen;
+                    }
+                }
+            }
+
+            Application.DoEvents();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
 
         }
     }
