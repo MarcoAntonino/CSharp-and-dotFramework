@@ -18,11 +18,11 @@ namespace Cinema.CLI
 
         static void Main(string[] args)
         {
-            loadScreeningRooms();
-            loadSchedules();
+            LoadScreeningRooms();
+            LoadSchedules();
         }
 
-        private static void loadScreeningRooms()
+        private static void LoadScreeningRooms()
         {
             screeningRooms = new List<ScreeningRoom>();
             //define room 1 and 2
@@ -43,7 +43,7 @@ namespace Cinema.CLI
             screeningRooms.Add(screeningRoom3);
         }
 
-        private static void loadSchedules()
+        private static void LoadSchedules()
         {
             Film powerRangersFilm = new Film();
             powerRangersFilm.Title = "Power Rangers";
@@ -53,7 +53,7 @@ namespace Cinema.CLI
 
             Schedule PowerRangersSchedule = new Schedule();
             PowerRangersSchedule.Film = powerRangersFilm;
-            PowerRangersSchedule.ScreeningRoom = getScreeningRoombyName("3");
+            PowerRangersSchedule.ScreeningRoom = GetScreeningRoombyName("3");
             PowerRangersSchedule.SetHour(20, 05);
             PowerRangersSchedule.NumberOfAvailableSeats = PowerRangersSchedule.ScreeningRoom.NumberOfSeats;
 
@@ -68,7 +68,7 @@ namespace Cinema.CLI
         }
 
         //metodo per ricerca sale per nome e la ritorna per assegnarle ai film
-        private static ScreeningRoom getScreeningRoombyName(string name)
+        private static ScreeningRoom GetScreeningRoombyName(string name)
         {
             return screeningRooms.Find(sr => sr.Name.Equals(name));
             //sr è l'abbreviazione di screeningrooms e l'abbiamo deciso ora

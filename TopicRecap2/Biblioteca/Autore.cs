@@ -67,11 +67,13 @@ namespace Biblioteca
             string nominativo;
             this.Cognome = Cognome;
 
+            nominativo = "";
+
 
             inizialeNome = Nome.Substring(0, 1);
             inizialeNome = inizialeNome.ToUpper();
 
-            nominativo= inizialeNome,"."," ",Cognome;
+            
 
             return nominativo;
 
