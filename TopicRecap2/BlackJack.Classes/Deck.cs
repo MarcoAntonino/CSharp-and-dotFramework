@@ -41,7 +41,8 @@ namespace BlackJack.Classes
         }
 
         public Card Extract()
-        {
+
+        {   
             Card extractedCard = deck.First();
             deck.Remove(deck.First());
             return extractedCard;

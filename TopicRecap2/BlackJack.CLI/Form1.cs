@@ -23,14 +23,18 @@ namespace BlackJack.CLI
 
         }
 
+        
         Card c1 = new Card(Rank.Ten, Suit.Spades);
         Deck d1 = new Deck();
+        PlayerOne marco = new PlayerOne("Marco");
+        
         
           
 
         private void button1_Click(object sender, EventArgs e)
         {
             d1.Shuffle();
+            marco.Hit(d1);
             Card c2 = d1.Extract();
             //MessageBox.Show(c2.ToString());
             textBox1.Text=c2.ToString();
@@ -40,5 +44,8 @@ namespace BlackJack.CLI
         {
 
         }
+
+       
+        
     }
 }

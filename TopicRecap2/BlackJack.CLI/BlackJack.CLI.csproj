@@ -64,6 +64,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\DataSources\BlackJack.Classes.Card.datasource" />
     <None Include="Properties\Settings.settings">
@@ -84,6 +85,9 @@
       <Project>{c2005ef1-d95e-491e-81cd-3dd59e0ca357}</Project>
       <Name>BlackJack.Classes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2_of_clubs.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
