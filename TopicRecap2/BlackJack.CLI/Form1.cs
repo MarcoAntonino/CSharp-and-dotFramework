@@ -32,7 +32,13 @@ namespace BlackJack.CLI
         {
             d1.Shuffle();
             Card c2 = d1.Extract();
-            MessageBox.Show(c2.ToString());
+            //MessageBox.Show(c2.ToString());
+            textBox1.Text=c2.ToString();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
