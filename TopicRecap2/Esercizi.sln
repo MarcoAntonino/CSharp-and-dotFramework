@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26206.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca", "Biblioteca\Biblioteca.csproj", "{A445E1B4-970F-4CB2-A6BB-D08CA932E5AE}"
 EndProject
@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackJack.CLI", "BlackJack.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackJack.Classes", "BlackJack.Classes\BlackJack.Classes.csproj", "{C2005EF1-D95E-491E-81CD-3DD59E0CA357}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blackjack", "BJPanza\WindowsFormsApplication1\Blackjack.csproj", "{5C4A32C2-C8D7-4435-B6CC-C8F220DFABCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorsePuzzleWinForms", "..\..\..\..\Downloads\HorsePuzzleWinFormsOOP\HorsePuzzleWinFormsOOP\HorsePuzzleWinForms\HorsePuzzleWinForms.csproj", "{5CC4A483-FB5B-44EA-8675-AC9014C311FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +57,10 @@ Global
 		{C2005EF1-D95E-491E-81CD-3DD59E0CA357}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2005EF1-D95E-491E-81CD-3DD59E0CA357}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2005EF1-D95E-491E-81CD-3DD59E0CA357}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C4A32C2-C8D7-4435-B6CC-C8F220DFABCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C4A32C2-C8D7-4435-B6CC-C8F220DFABCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C4A32C2-C8D7-4435-B6CC-C8F220DFABCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C4A32C2-C8D7-4435-B6CC-C8F220DFABCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CC4A483-FB5B-44EA-8675-AC9014C311FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CC4A483-FB5B-44EA-8675-AC9014C311FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CC4A483-FB5B-44EA-8675-AC9014C311FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CC4A483-FB5B-44EA-8675-AC9014C311FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
