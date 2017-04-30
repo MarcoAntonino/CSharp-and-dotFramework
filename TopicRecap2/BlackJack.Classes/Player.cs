@@ -10,10 +10,14 @@ namespace BlackJack.Classes
     {
         public int Points { get; set; }
         public List<Card> Hand { get; set; }
+        public bool Natural { get; set; }
 
         public Player ()
         {
-           this.Points = 0;
+            this.Points = 0;
+            this.Hand = new List<Card>();
+            this.Natural = false;
+
         }
 
         public int Hit(Deck currentDeck)
@@ -22,6 +26,8 @@ namespace BlackJack.Classes
             Points = Points+Hand.Last().Point;
             return Points;
         }
+
+        
 
         public override string ToString()
         {

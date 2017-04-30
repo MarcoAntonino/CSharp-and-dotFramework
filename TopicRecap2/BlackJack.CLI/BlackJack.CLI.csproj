@@ -58,14 +58,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\DataSources\BlackJack.Classes.Card.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -86,8 +80,73 @@
       <Name>BlackJack.Classes</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\2_of_clubs.png" />
+    <Content Include="Cards\Clubs\Ace.jpg" />
+    <Content Include="Cards\Clubs\Ten.jpg" />
+    <Content Include="Cards\Clubs\Jack.jpg" />
+    <Content Include="Cards\Clubs\Queen.jpg" />
+    <Content Include="Cards\Clubs\King.jpg" />
+    <Content Include="Cards\Clubs\Two.jpg" />
+    <Content Include="Cards\Clubs\Three.jpg" />
+    <Content Include="Cards\Clubs\Four.jpg" />
+    <Content Include="Cards\Clubs\Five.jpg" />
+    <Content Include="Cards\Clubs\Six.jpg" />
+    <Content Include="Cards\Clubs\Seven.jpg" />
+    <Content Include="Cards\Clubs\Eight.jpg" />
+    <Content Include="Cards\Clubs\Nine.jpg" />
+    <Content Include="Cards\Diamonds\Ace.jpg" />
+    <Content Include="Cards\Diamonds\Two.jpg" />
+    <Content Include="Cards\Diamonds\Three.jpg" />
+    <Content Include="Cards\Diamonds\Four.jpg" />
+    <Content Include="Cards\Diamonds\Five.jpg" />
+    <Content Include="Cards\Diamonds\Six.jpg" />
+    <Content Include="Cards\Diamonds\Seven.jpg" />
+    <Content Include="Cards\Diamonds\Eight.jpg" />
+    <Content Include="Cards\Diamonds\Nine.jpg" />
+    <Content Include="Cards\Diamonds\Ten.jpg" />
+    <Content Include="Cards\Diamonds\Jack.jpg" />
+    <Content Include="Cards\Diamonds\Queen.jpg" />
+    <Content Include="Cards\Diamonds\King.jpg" />
+    <Content Include="Cards\Hearts\Ace.jpg" />
+    <Content Include="Cards\Hearts\Two.jpg" />
+    <Content Include="Cards\Hearts\Three.jpg" />
+    <Content Include="Cards\Hearts\Four.jpg" />
+    <Content Include="Cards\Hearts\Five.jpg" />
+    <Content Include="Cards\Hearts\Six.jpg" />
+    <Content Include="Cards\Hearts\Seven.jpg" />
+    <Content Include="Cards\Hearts\Eight.jpg" />
+    <Content Include="Cards\Hearts\Nine.jpg" />
+    <Content Include="Cards\Hearts\Ten.jpg" />
+    <Content Include="Cards\Hearts\Jack.jpg" />
+    <Content Include="Cards\Hearts\Queen.jpg" />
+    <Content Include="Cards\Hearts\King.jpg" />
+    <Content Include="Cards\Spades\Ace.jpg" />
+    <Content Include="Cards\Spades\Two.jpg" />
+    <Content Include="Cards\Spades\Three.jpg" />
+    <Content Include="Cards\Spades\Four.jpg" />
+    <Content Include="Cards\Spades\Five.jpg" />
+    <Content Include="Cards\Spades\Six.jpg" />
+    <Content Include="Cards\Spades\Seven.jpg" />
+    <Content Include="Cards\Spades\Eight.jpg" />
+    <Content Include="Cards\Spades\Nine.jpg" />
+    <Content Include="Cards\Spades\Ten.jpg" />
+    <Content Include="Cards\Spades\Jack.jpg" />
+    <Content Include="Cards\Spades\Queen.jpg" />
+    <Content Include="Cards\Spades\King.jpg" />
+    <Content Include="Resources\Cards\Hearts\1.jpg" />
+    <Content Include="Resources\Cards\Hearts\8.jpg" />
+    <Content Include="Resources\Cards\Hearts\5.jpg" />
+    <Content Include="Resources\Cards\Hearts\4.jpg" />
+    <Content Include="Resources\Cards\Hearts\11.jpg" />
+    <Content Include="Resources\Cards\Hearts\13.jpg" />
+    <Content Include="Resources\Cards\Hearts\9.jpg" />
+    <Content Include="Resources\Cards\Hearts\12.jpg" />
+    <Content Include="Resources\Cards\Hearts\7.jpg" />
+    <Content Include="Resources\Cards\Hearts\6.jpg" />
+    <Content Include="Resources\Cards\Hearts\10.jpg" />
+    <Content Include="Resources\Cards\Hearts\3.jpg" />
+    <Content Include="Resources\Cards\Hearts\2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
