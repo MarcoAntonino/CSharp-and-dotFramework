@@ -19,6 +19,10 @@ namespace BlackJack.CLI
         int i = 1;
         int d = 1;
 
+        Form popUp = new AceValueChoice();
+        
+
+
         public Form1()
         {
             InitializeComponent();            
@@ -26,8 +30,8 @@ namespace BlackJack.CLI
             txtP1Points.Text = p1.Points.ToString();
             txtPlayerBet.Text = p1.Bet.ToString();
             lblP1Stack.Text = p1.Stack.ToString();
+            btnHit.Enabled = false;
             
-           
         }
 
 
@@ -47,7 +51,7 @@ namespace BlackJack.CLI
 
             p1.Hit(d1);
             Card c2 = d1.Extract();
-            //MessageBox.Show(c2.ToString());
+            
             textBox1.Text=c2.ToString();
             NewRound();
         }
@@ -64,20 +68,15 @@ namespace BlackJack.CLI
 
         private void Hit_Click(object sender, EventArgs e)
         {
-            // Funziona
-            //d1.Shuffle();
-            //p1.Hit(d1);
-            //Image img = Image.FromFile(machineImagePath+"\\BlackJack.CLI\\Cards\\" + p1.Hand[0].Suit + "\\" + p1.Hand[0].Rank + ".jpg");
-            //pictureBox1.Image = img;
-            //playerHandPictures.Add(new PictureBox());
-            //playerHandPictures[0].Image = img;
-            //playerHandPictures[0].Left = 100;
-            //playerHandPictures[0].Top = 50;
-            //this.Controls.Add(playerHandPictures[0]);
-
-
+            
             d1.Shuffle();
             p1.Hit(d1);
+            if (p1.Hand.Last().Rank == Rank.Ace)
+            {
+                popUp.ShowDialog();
+                p1.Hand.Last().Point = popUp.;
+
+            }
             playerHandPictures.Add(new PictureBox());
             playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
             playerHandPictures.Last().Size = new Size(74, 99);
@@ -90,21 +89,7 @@ namespace BlackJack.CLI
             {
                 NewRound();
             }
-           
-
-            //if (p1.Points>21)
-            //{
-            //    lblGameStatus.Text = p1.Name + " losts";
-            //    NewRound();
-            //p1.Hand.Clear();
-            //p1.Points = 0;
-            //foreach (PictureBox p in playerHandPictures)
-            //    this.Controls.Remove(p);
-            //playerHandPictures.Clear();
-            //d1 = new Deck();
-            //i = 1;
-
-            //}
+                     
 
         }
 
@@ -115,26 +100,7 @@ namespace BlackJack.CLI
             
         }
 
-        
-
-        //private void CreateControls()
-        //{
-        //    for (int i = 0; i<playerHandPictures.Count; i++)
-        //    {
-        //        var newPictureBox = new PictureBox();
-        //        newPictureBox.Width = 75;
-        //        newPictureBox.Height = 100;
-        //        playerHandPictures[i] = SizeImage(newPictureBox, i);
-        //    }
-        //}
-
-        //private PictureBox SizeImage(PictureBox pb, int i)
-        //{
-        //    Image img = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand[0].Suit + "\\" + p1.Hand[0].Rank + ".jpg");
-
-
-        //}
-
+                
         public void Hand()
         {
             
@@ -144,6 +110,73 @@ namespace BlackJack.CLI
         private void btnBet_Click(object sender, EventArgs e)
         {
             p1.SetBet(1);
+            txtPlayerBet.Text = p1.Bet.ToString();
+            lblP1Stack.Text = p1.Stack.ToString();
+
+            //Primo giro
+            d1.Shuffle();
+            p1.Hit(d1);
+            if (p1.Hand.Last().Rank == Rank.Ace)
+            {
+                popUp.ShowDialog();
+                
+
+            }
+            playerHandPictures.Add(new PictureBox());
+            playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
+            playerHandPictures.Last().Size = new Size(74, 99);
+            playerHandPictures.Last().Location = new Point(56 + i, 400);
+            this.Controls.Add(playerHandPictures.Last());
+            txtP1Points.Text = p1.Points.ToString();
+            i = i + 20;
+
+            de1.Hit(d1);
+            dealerdHandPictures.Add(new PictureBox());
+            dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
+            dealerdHandPictures.Last().Size = new Size(74, 99);
+            dealerdHandPictures.Last().Location = new Point(56 + d, 150);
+            this.Controls.Add(dealerdHandPictures.Last());
+            txtDPoints.Text = de1.Points.ToString();
+            d = d + 20;
+
+            //Secondo giro
+            p1.Hit(d1);
+            if (p1.Hand.Last().Rank == Rank.Ace)
+            {
+                popUp.ShowDialog();
+                
+
+            }
+            playerHandPictures.Add(new PictureBox());
+            playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
+            playerHandPictures.Last().Size = new Size(74, 99);
+            playerHandPictures.Last().Location = new Point(56 + i, 400);
+            this.Controls.Add(playerHandPictures.Last());
+            txtP1Points.Text = p1.Points.ToString();
+            i = i + 20;
+
+            de1.Hit(d1);
+            dealerdHandPictures.Add(new PictureBox());
+            dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
+            dealerdHandPictures.Last().Size = new Size(74, 99);
+            dealerdHandPictures.Last().Location = new Point(56 + d, 150);
+            this.Controls.Add(dealerdHandPictures.Last());
+            txtDPoints.Text = de1.Points.ToString();
+            d = d + 20;
+
+            btnBet1D.Enabled = false;
+            btnBet5D.Enabled = false;
+            btnBet25D.Enabled = false;
+            btnBet100D.Enabled = false;
+            btnHit.Enabled = true;
+
+
+
+        }
+
+        private void btnBet5D_Click(object sender, EventArgs e)
+        {
+            p1.SetBet(5);
             txtPlayerBet.Text = p1.Bet.ToString();
             lblP1Stack.Text = p1.Stack.ToString();
 
@@ -187,15 +220,11 @@ namespace BlackJack.CLI
             d = d + 20;
 
             btnBet1D.Enabled = false;
+            btnBet5D.Enabled = false;
+            btnBet25D.Enabled = false;
+            btnBet100D.Enabled = false;
+            btnHit.Enabled = true;
 
-
-        }
-
-        private void btnBet5D_Click(object sender, EventArgs e)
-        {
-            p1.SetBet(5);
-            txtPlayerBet.Text = p1.Bet.ToString();
-            lblP1Stack.Text = p1.Stack.ToString();
 
         }
 
@@ -205,6 +234,52 @@ namespace BlackJack.CLI
             txtPlayerBet.Text = p1.Bet.ToString();
             lblP1Stack.Text = p1.Stack.ToString();
 
+            //Primo giro
+            d1.Shuffle();
+            p1.Hit(d1);
+            playerHandPictures.Add(new PictureBox());
+            playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
+            playerHandPictures.Last().Size = new Size(74, 99);
+            playerHandPictures.Last().Location = new Point(56 + i, 400);
+            this.Controls.Add(playerHandPictures.Last());
+            txtP1Points.Text = p1.Points.ToString();
+            i = i + 20;
+
+            de1.Hit(d1);
+            dealerdHandPictures.Add(new PictureBox());
+            dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
+            dealerdHandPictures.Last().Size = new Size(74, 99);
+            dealerdHandPictures.Last().Location = new Point(56 + d, 150);
+            this.Controls.Add(dealerdHandPictures.Last());
+            txtDPoints.Text = de1.Points.ToString();
+            d = d + 20;
+
+            //Secondo giro
+            p1.Hit(d1);
+            playerHandPictures.Add(new PictureBox());
+            playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
+            playerHandPictures.Last().Size = new Size(74, 99);
+            playerHandPictures.Last().Location = new Point(56 + i, 400);
+            this.Controls.Add(playerHandPictures.Last());
+            txtP1Points.Text = p1.Points.ToString();
+            i = i + 20;
+
+            de1.Hit(d1);
+            dealerdHandPictures.Add(new PictureBox());
+            dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
+            dealerdHandPictures.Last().Size = new Size(74, 99);
+            dealerdHandPictures.Last().Location = new Point(56 + d, 150);
+            this.Controls.Add(dealerdHandPictures.Last());
+            txtDPoints.Text = de1.Points.ToString();
+            d = d + 20;
+
+            btnBet1D.Enabled = false;
+            btnBet5D.Enabled = false;
+            btnBet25D.Enabled = false;
+            btnBet100D.Enabled = false;
+            btnHit.Enabled = true;
+
+
 
         }
 
@@ -213,6 +288,52 @@ namespace BlackJack.CLI
             p1.SetBet(100);
             txtPlayerBet.Text = p1.Bet.ToString();
             lblP1Stack.Text = p1.Stack.ToString();
+
+            //Primo giro
+            d1.Shuffle();
+            p1.Hit(d1);            
+            playerHandPictures.Add(new PictureBox());
+            playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
+            playerHandPictures.Last().Size = new Size(74, 99);
+            playerHandPictures.Last().Location = new Point(56 + i, 400);
+            this.Controls.Add(playerHandPictures.Last());
+            txtP1Points.Text = p1.Points.ToString();
+            i = i + 20;
+
+            de1.Hit(d1);
+            dealerdHandPictures.Add(new PictureBox());
+            dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
+            dealerdHandPictures.Last().Size = new Size(74, 99);
+            dealerdHandPictures.Last().Location = new Point(56 + d, 150);
+            this.Controls.Add(dealerdHandPictures.Last());
+            txtDPoints.Text = de1.Points.ToString();
+            d = d + 20;
+
+            //Secondo giro
+            p1.Hit(d1);
+            playerHandPictures.Add(new PictureBox());
+            playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
+            playerHandPictures.Last().Size = new Size(74, 99);
+            playerHandPictures.Last().Location = new Point(56 + i, 400);
+            this.Controls.Add(playerHandPictures.Last());
+            txtP1Points.Text = p1.Points.ToString();
+            i = i + 20;
+
+            de1.Hit(d1);
+            dealerdHandPictures.Add(new PictureBox());
+            dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
+            dealerdHandPictures.Last().Size = new Size(74, 99);
+            dealerdHandPictures.Last().Location = new Point(56 + d, 150);
+            this.Controls.Add(dealerdHandPictures.Last());
+            txtDPoints.Text = de1.Points.ToString();
+            d = d + 20;
+
+            btnBet1D.Enabled = false;
+            btnBet5D.Enabled = false;
+            btnBet25D.Enabled = false;
+            btnBet100D.Enabled = false;
+            btnHit.Enabled = true;
+
 
         }
 
@@ -259,7 +380,11 @@ namespace BlackJack.CLI
 
         public void NewRound()
         {
+            btnHit.Enabled = false;
             btnBet1D.Enabled = true;
+            btnBet5D.Enabled = true;
+            btnBet25D.Enabled = true;
+            btnBet100D.Enabled = true;
             p1.Hand.Clear();
             p1.Points = 0;
             p1.Bet = 0;
@@ -310,6 +435,15 @@ namespace BlackJack.CLI
             }
             NewRound();
         }
+
+        public DialogResult ShowAceDialog()
+        {
+            Form popUp = new AceValueChoice();
+            DialogResult dialogresult = popUp.ShowDialog();            
+            return dialogresult;
+        }
+
         
+
     }
 }
