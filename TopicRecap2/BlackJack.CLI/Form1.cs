@@ -31,7 +31,9 @@ namespace BlackJack.CLI
             txtPlayerBet.Text = p1.Bet.ToString();
             lblP1Stack.Text = p1.Stack.ToString();
             btnHit.Enabled = false;
-            
+            btnStand.Enabled = false;
+
+
         }
 
 
@@ -73,8 +75,11 @@ namespace BlackJack.CLI
             p1.Hit(d1);
             if (p1.Hand.Last().Rank == Rank.Ace)
             {
-                popUp.ShowDialog();
-                p1.Hand.Last().Point = popUp.;
+                if (p1.Points + p1.Hand.Last().Point <= 21)
+                {
+                    p1.Hand.Last().Point = 11;
+
+                }
 
             }
             playerHandPictures.Add(new PictureBox());
@@ -118,9 +123,11 @@ namespace BlackJack.CLI
             p1.Hit(d1);
             if (p1.Hand.Last().Rank == Rank.Ace)
             {
-                popUp.ShowDialog();
+                if (p1.Points + p1.Hand.Last().Point <= 21)
+                {
+                    p1.Hand.Last().Point = 11;
+                }
                 
-
             }
             playerHandPictures.Add(new PictureBox());
             playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
@@ -130,7 +137,15 @@ namespace BlackJack.CLI
             txtP1Points.Text = p1.Points.ToString();
             i = i + 20;
 
-            de1.Hit(d1);
+            de1.Hit(d1);            
+            if (de1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (de1.Points + de1.Hand.Last().Point <= 21)
+                {
+                    de1.Hand.Last().Point = 11;
+                }
+                
+            }
             dealerdHandPictures.Add(new PictureBox());
             dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
             dealerdHandPictures.Last().Size = new Size(74, 99);
@@ -143,9 +158,11 @@ namespace BlackJack.CLI
             p1.Hit(d1);
             if (p1.Hand.Last().Rank == Rank.Ace)
             {
-                popUp.ShowDialog();
+                if (p1.Points + p1.Hand.Last().Point <= 21)
+                {
+                    p1.Hand.Last().Point = 11;
+                }
                 
-
             }
             playerHandPictures.Add(new PictureBox());
             playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
@@ -156,6 +173,14 @@ namespace BlackJack.CLI
             i = i + 20;
 
             de1.Hit(d1);
+            if (de1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (de1.Points + de1.Hand.Last().Point <= 21)
+                {
+                    de1.Hand.Last().Point = 11;
+                }
+                
+            }
             dealerdHandPictures.Add(new PictureBox());
             dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
             dealerdHandPictures.Last().Size = new Size(74, 99);
@@ -169,6 +194,7 @@ namespace BlackJack.CLI
             btnBet25D.Enabled = false;
             btnBet100D.Enabled = false;
             btnHit.Enabled = true;
+            btnStand.Enabled = true;
 
 
 
@@ -183,6 +209,14 @@ namespace BlackJack.CLI
             //Primo giro
             d1.Shuffle();
             p1.Hit(d1);
+            p1.Hit(d1);
+            if (p1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (p1.Points + p1.Hand.Last().Point <= 21)
+                    p1.Hand.Last().Point = 11;
+                else
+                    p1.Hand.Last().Point = 1;
+            }
             playerHandPictures.Add(new PictureBox());
             playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
             playerHandPictures.Last().Size = new Size(74, 99);
@@ -192,6 +226,13 @@ namespace BlackJack.CLI
             i = i + 20;
 
             de1.Hit(d1);
+            if (de1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (de1.Points + de1.Hand.Last().Point <= 21)
+                    de1.Hand.Last().Point = 11;
+                else
+                    de1.Hand.Last().Point = 1;
+            }
             dealerdHandPictures.Add(new PictureBox());
             dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
             dealerdHandPictures.Last().Size = new Size(74, 99);
@@ -202,6 +243,14 @@ namespace BlackJack.CLI
 
             //Secondo giro
             p1.Hit(d1);
+            p1.Hit(d1);
+            if (p1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (p1.Points + p1.Hand.Last().Point <= 21)
+                    p1.Hand.Last().Point = 11;
+                else
+                    p1.Hand.Last().Point = 1;
+            }
             playerHandPictures.Add(new PictureBox());
             playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
             playerHandPictures.Last().Size = new Size(74, 99);
@@ -211,6 +260,13 @@ namespace BlackJack.CLI
             i = i + 20;
 
             de1.Hit(d1);
+            if (de1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (de1.Points + de1.Hand.Last().Point <= 21)
+                    de1.Hand.Last().Point = 11;
+                else
+                    de1.Hand.Last().Point = 1;
+            }
             dealerdHandPictures.Add(new PictureBox());
             dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
             dealerdHandPictures.Last().Size = new Size(74, 99);
@@ -224,6 +280,8 @@ namespace BlackJack.CLI
             btnBet25D.Enabled = false;
             btnBet100D.Enabled = false;
             btnHit.Enabled = true;
+            btnStand.Enabled = true;
+
 
 
         }
@@ -237,6 +295,14 @@ namespace BlackJack.CLI
             //Primo giro
             d1.Shuffle();
             p1.Hit(d1);
+            p1.Hit(d1);
+            if (p1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (p1.Points + p1.Hand.Last().Point <= 21)
+                    p1.Hand.Last().Point = 11;
+                else
+                    p1.Hand.Last().Point = 1;
+            }
             playerHandPictures.Add(new PictureBox());
             playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
             playerHandPictures.Last().Size = new Size(74, 99);
@@ -246,6 +312,13 @@ namespace BlackJack.CLI
             i = i + 20;
 
             de1.Hit(d1);
+            if (de1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (de1.Points + de1.Hand.Last().Point <= 21)
+                    de1.Hand.Last().Point = 11;
+                else
+                    de1.Hand.Last().Point = 1;
+            }
             dealerdHandPictures.Add(new PictureBox());
             dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
             dealerdHandPictures.Last().Size = new Size(74, 99);
@@ -256,6 +329,14 @@ namespace BlackJack.CLI
 
             //Secondo giro
             p1.Hit(d1);
+            p1.Hit(d1);
+            if (p1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (p1.Points + p1.Hand.Last().Point <= 21)
+                    p1.Hand.Last().Point = 11;
+                else
+                    p1.Hand.Last().Point = 1;
+            }
             playerHandPictures.Add(new PictureBox());
             playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
             playerHandPictures.Last().Size = new Size(74, 99);
@@ -265,6 +346,13 @@ namespace BlackJack.CLI
             i = i + 20;
 
             de1.Hit(d1);
+            if (de1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (de1.Points + de1.Hand.Last().Point <= 21)
+                    de1.Hand.Last().Point = 11;
+                else
+                    de1.Hand.Last().Point = 1;
+            }
             dealerdHandPictures.Add(new PictureBox());
             dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
             dealerdHandPictures.Last().Size = new Size(74, 99);
@@ -278,6 +366,8 @@ namespace BlackJack.CLI
             btnBet25D.Enabled = false;
             btnBet100D.Enabled = false;
             btnHit.Enabled = true;
+            btnStand.Enabled = true;
+
 
 
 
@@ -291,7 +381,15 @@ namespace BlackJack.CLI
 
             //Primo giro
             d1.Shuffle();
-            p1.Hit(d1);            
+            p1.Hit(d1);
+            p1.Hit(d1);
+            if (p1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (p1.Points + p1.Hand.Last().Point <= 21)
+                    p1.Hand.Last().Point = 11;
+                else
+                    p1.Hand.Last().Point = 1;
+            }
             playerHandPictures.Add(new PictureBox());
             playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
             playerHandPictures.Last().Size = new Size(74, 99);
@@ -301,6 +399,13 @@ namespace BlackJack.CLI
             i = i + 20;
 
             de1.Hit(d1);
+            if (de1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (de1.Points + de1.Hand.Last().Point <= 21)
+                    de1.Hand.Last().Point = 11;
+                else
+                    de1.Hand.Last().Point = 1;
+            }
             dealerdHandPictures.Add(new PictureBox());
             dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
             dealerdHandPictures.Last().Size = new Size(74, 99);
@@ -311,6 +416,14 @@ namespace BlackJack.CLI
 
             //Secondo giro
             p1.Hit(d1);
+            p1.Hit(d1);
+            if (p1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (p1.Points + p1.Hand.Last().Point <= 21)
+                    p1.Hand.Last().Point = 11;
+                else
+                    p1.Hand.Last().Point = 1;
+            }
             playerHandPictures.Add(new PictureBox());
             playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
             playerHandPictures.Last().Size = new Size(74, 99);
@@ -320,6 +433,13 @@ namespace BlackJack.CLI
             i = i + 20;
 
             de1.Hit(d1);
+            if (de1.Hand.Last().Rank == Rank.Ace)
+            {
+                if (de1.Points + de1.Hand.Last().Point <= 21)
+                    de1.Hand.Last().Point = 11;
+                else
+                    de1.Hand.Last().Point = 1;
+            }
             dealerdHandPictures.Add(new PictureBox());
             dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
             dealerdHandPictures.Last().Size = new Size(74, 99);
@@ -333,6 +453,8 @@ namespace BlackJack.CLI
             btnBet25D.Enabled = false;
             btnBet100D.Enabled = false;
             btnHit.Enabled = true;
+            btnStand.Enabled = true;
+
 
 
         }
@@ -436,12 +558,13 @@ namespace BlackJack.CLI
             NewRound();
         }
 
-        public DialogResult ShowAceDialog()
-        {
-            Form popUp = new AceValueChoice();
-            DialogResult dialogresult = popUp.ShowDialog();            
-            return dialogresult;
-        }
+        //public DialogResult ShowAceDialog()
+        //{
+        //    Form popUp = new AceValueChoice();
+        //    popUp.ShowDialog();
+            
+            
+        //}
 
         
 

@@ -14,24 +14,25 @@ namespace BlackJack.CLI
 {
     public partial class AceValueChoice : Form
     {
-        public int aceValue = 1;
+        public int aceValue;
         
         
         public AceValueChoice()
         {
             InitializeComponent();
+            
         }
 
         public void rbtnOne_CheckedChanged(object sender, EventArgs e)
         {
-
-            this.aceValue = 1;
+            if(rbtnOne.Checked)
+                this.aceValue = 1;
         }
 
         public void rbtnEleven_CheckedChanged(object sender, EventArgs e)
         {
-
-            this.aceValue = 11;
+            if (rbtnOne.Checked)
+                this.aceValue = 11;
 
 
         }
@@ -46,6 +47,13 @@ namespace BlackJack.CLI
         {
             
             this.DialogResult = DialogResult.OK;
+            if (rbtnOne.Checked)
+                this.aceValue = 11;
+            else
+            {
+                this.aceValue = 1;
+               
+            }
             this.Close();
         }
 
@@ -53,6 +61,8 @@ namespace BlackJack.CLI
         {
             return aceValue;
         }
+
+      
 
         private void AceValueChoice_Load(object sender, EventArgs e)
         {

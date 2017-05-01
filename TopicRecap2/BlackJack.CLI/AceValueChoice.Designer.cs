@@ -116,9 +116,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnOK;
         public System.Windows.Forms.RadioButton rbtnEleven;
         public System.Windows.Forms.RadioButton rbtnOne;
         private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.Button btnOK;
     }
 }
