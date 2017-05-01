@@ -10,24 +10,18 @@ namespace BlackJack.Classes
     {
         public int Points { get; set; }
         public List<Card> Hand { get; set; }
-        public bool Natural { get; set; }
+        private bool Natural { get; set; }
 
         public Player ()
         {
             this.Points = 0;
             this.Hand = new List<Card>();
             this.Natural = false;
-
         }
 
-        public int Hit(Deck currentDeck)
-        {
-            Hand.Add(currentDeck.Extract());
-            Points = Points+Hand.Last().Point;
-            return Points;
-        }
-
-        
+        public abstract int Hit(Deck currentDeck);
+       
+                
 
         public override string ToString()
         {
@@ -37,5 +31,12 @@ namespace BlackJack.Classes
                 Console.WriteLine(c);
             }
         }
+
+        public void IsNaturalBJ(Player CurrentPlayer)
+        {
+            if (CurrentPlayer.Points == 21 && CurrentPlayer.Hand.Count == 2)
+                CurrentPlayer.Natural = true;
+        }
+      
     }
 }

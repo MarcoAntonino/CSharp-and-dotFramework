@@ -14,25 +14,28 @@ namespace BlackJack.Classes
 
 
 
-        public HumanPlayer (string name)
+    public HumanPlayer (string name)
         {
             this.Name = name;
-            this.Stack = 100;
+            this.Stack = 1000;
             this.Bet = 0;
 
         }
-
-        public int SetBet(int currentStack)
+        public override int Hit(Deck currentDeck)
         {
+            Hand.Add(currentDeck.Extract());
+            Points = Points + Hand.Last().Point;
+            return Points;
+        }
+
+        
+        public void SetBet(int currentBet)
+        {
+            Bet = currentBet;            
             
-            while (Bet > Stack)
-            {
-                Console.WriteLine("Non puoi scommettere quello che non hai");
-            }
+            Stack = Stack - Bet;
 
-            return Bet;
-
-
+            
 
             //if (Bet < Stack)
             //    return Bet;
@@ -43,6 +46,7 @@ namespace BlackJack.Classes
             //}
         }
 
+        
 
     }
 }
