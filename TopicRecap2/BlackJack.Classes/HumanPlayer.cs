@@ -9,8 +9,8 @@ namespace BlackJack.Classes
     public class HumanPlayer : Player
     {
         public string Name { get; set; }
-        public int Stack { get; set; }
-        public int Bet { get; set; }
+        public double Stack { get; set; }
+        public double Bet { get; set; }
 
 
 

@@ -174,25 +174,7 @@ namespace BlackJack.CLI
                 p1.Points = (p1.Points - 1) + p1.Hand.Last().Point;
             }
         }
-
-        //public void DealerAceValue()
-        //{
-        //    if (de1.Hand.Last().Rank == Rank.Ace)
-        //    {
-        //        if (de1.Points>10)
-        //        {
-        //            de1.Hand.Last().Point = 1;
-        //        }
-        //        else
-        //        {
-        //            de1.Hand.Last().Point = 1;
-
-        //        }
-        //        de1.Points = (de1.Points - 1) + de1.Hand.Last().Point;
-                
-        //    }
-        //}
-
+              
         private void btnBet_Click(object sender, EventArgs e)
         {
             p1.SetBet(1);
@@ -256,7 +238,7 @@ namespace BlackJack.CLI
 
             if (Bust(de1) == true)
             {
-                p1.Stack = p1.Stack + p1.Bet;
+                p1.Stack = p1.Stack + p1.Bet*2;
                 NewRound();
             }
             else
@@ -303,7 +285,6 @@ namespace BlackJack.CLI
             {
                 MessageBox.Show("Bust!");
                 return true;
-                NewRound();
             }
             else
                 return false;
@@ -312,7 +293,7 @@ namespace BlackJack.CLI
 
         public void WhoWon()
         {
-            if(p1.Points>de1.Points)
+            if (p1.Points>de1.Points)
             {
                 MessageBox.Show(p1.Name+" "+"ha vinto");
                 p1.Stack = p1.Stack + p1.Bet * 2;
@@ -329,9 +310,27 @@ namespace BlackJack.CLI
             NewRound();
         }
 
-        
+        public void BlackJack()
+        {
+            if (p1.Hand.Count == 2 && p1.Points == 21 && p1.Points != de1.Points)
+            {
+                MessageBox.Show("21 vittoria, grande baldoria!");
+                p1.Stack = p1.Stack + p1.Bet + p1.Bet * 1.5;
+                NewRound();
+            }
+            else if (p1.Hand.Count == 2 && p1.Points == 21 && p1.Points == de1.Points && de1.Hand.Count == 2)
+            {
+                MessageBox.Show("Pareggio");
+                p1.Stack = p1.Stack + p1.Bet;
+                NewRound();
+            }
+            else WhoWon();
 
-        
+        }
+
+
+
+
 
     }
 }

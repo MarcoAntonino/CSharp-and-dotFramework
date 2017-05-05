@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Classes
 {
-    class PlayerPointsOutOfRangeException : Exception
+    [Serializable]
+    public class PlayerPointsOutOfRangeException : Exception
     {
         public PlayerPointsOutOfRangeException(string message) : base(message)
         {
         }
+
+        public PlayerPointsOutOfRangeException() { }
     }
 }

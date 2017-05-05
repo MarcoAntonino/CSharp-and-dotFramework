@@ -8,6 +8,7 @@ namespace BlackJack.Classes
 {
     public class Dealer : Player
     {
+        
         public override int Hit(Deck currentDeck)
         {
             
