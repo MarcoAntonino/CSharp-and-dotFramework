@@ -14,9 +14,13 @@ namespace BlackJack.Classes
             Hand.Add(currentDeck.Extract());
             if (Hand.Last().Rank == Rank.Ace)
             {
-                if (Points + Hand.Last().Point <= 21)
+                if (Points<10)
                 {
                     Hand.Last().Point = 11;
+                }
+                else
+                {
+                    Hand.Last().Point = 1;
                 }
 
             }

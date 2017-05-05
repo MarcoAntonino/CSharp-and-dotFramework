@@ -46,6 +46,7 @@
     <Compile Include="Deck.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="HumanPlayer.cs" />
+    <Compile Include="PlayerPointsOutOfRangeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rank.cs" />
     <Compile Include="Suit.cs" />

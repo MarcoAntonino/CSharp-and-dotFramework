@@ -15,6 +15,7 @@ namespace BlackJack.CLI
     public partial class AceValueChoice : Form
     {
         public int aceValue;
+        public Form1 frm1;
         
         
         public AceValueChoice()
@@ -46,15 +47,19 @@ namespace BlackJack.CLI
         private void btnOK_Click(object sender, EventArgs e)
         {
             
-            this.DialogResult = DialogResult.OK;
+            
             if (rbtnOne.Checked)
-                this.aceValue = 11;
-            else
             {
                 this.aceValue = 1;
+
+            }
+            else
+            {
+                this.aceValue = 11;
                
             }
             this.Close();
+            this.DialogResult = DialogResult.OK;
         }
 
         public int GetAceValue()
