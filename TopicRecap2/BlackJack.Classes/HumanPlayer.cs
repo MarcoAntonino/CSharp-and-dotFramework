@@ -24,6 +24,14 @@ namespace BlackJack.Classes
         public override int Hit(Deck currentDeck)
         {
             Hand.Add(currentDeck.Extract());
+            if (Hand.Last().Rank == Rank.Ace)
+            {
+                if (Points + Hand.Last().Point <= 21)
+                {
+                    Hand.Last().Point = 11;
+                }
+
+            }
             Points = Points + Hand.Last().Point;
             return Points;
         }

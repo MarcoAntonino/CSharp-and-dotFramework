@@ -156,6 +156,10 @@
     <Content Include="Resources\Cards\Hearts\10.jpg" />
     <Content Include="Resources\Cards\Hearts\3.jpg" />
     <Content Include="Resources\Cards\Hearts\2.jpg" />
+    <Content Include="Resources\Card_back.png" />
+    <Content Include="Resources\Card_back1.png" />
+    <Content Include="Resources\dorsocarta.jpg" />
+    <Content Include="Resources\dorsocarta1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
