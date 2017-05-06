@@ -24,20 +24,13 @@ namespace BlackJack.Classes
         public override int Hit(Deck currentDeck)
         {
             Hand.Add(currentDeck.Extract());
-            //if (Hand.Last().Rank == Rank.Ace)
-            //{
-            //    if (Points + Hand.Last().Point <= 21)
-            //    {
-            //        Hand.Last().Point = 11;
-            //    }
-            //    else
-            //    {
-            //        Hand.Last().Point = 1;
-
-            //    }
-
-            //}
+           
             Points = Points + Hand.Last().Point;
+            if (Points > 21)
+            {
+                IsBust = true;
+                throw new PlayerPointsOutOfRangeException(string.Format("Il giocatore ha superato il punteggio di 21"));
+            }
             return Points;
         }
 

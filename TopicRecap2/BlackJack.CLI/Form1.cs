@@ -52,8 +52,7 @@ namespace BlackJack.CLI
         {
 
             p1.Hit(d1);
-            Card c2 = d1.Extract();
-            
+            Card c2 = d1.Extract();            
             textBox1.Text=c2.ToString();
             NewRound();
         }
@@ -70,23 +69,34 @@ namespace BlackJack.CLI
 
         private void Hit_Click(object sender, EventArgs e)
         {
-            
-            d1.Shuffle();
-            p1.Hit(d1);
-            PlayerAceValue();
-            playerHandPictures.Add(new PictureBox());
-            playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
-            playerHandPictures.Last().Size = new Size(74, 99);
-            playerHandPictures.Last().Location = new Point(56 + i, 400);
-            this.Controls.Add(playerHandPictures.Last());
-            playerHandPictures.Last().BringToFront();
-            txtP1Points.Text = p1.Points.ToString();
-            i = i + 20;
-
-            if(Bust(p1)==true)
+            try
             {
-                NewRound();
+                p1.Hit(d1);
+                PlayerAceValue();
+                playerHandPictures.Add(new PictureBox());
+                playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
+                playerHandPictures.Last().Size = new Size(74, 99);
+                playerHandPictures.Last().Location = new Point(56 + i, 400);
+                this.Controls.Add(playerHandPictures.Last());
+                playerHandPictures.Last().BringToFront();
+                txtP1Points.Text = p1.Points.ToString();
+                i = i + 20;
             }
+            catch (PlayerPointsOutOfRangeException ex)
+            {
+                
+                playerHandPictures.Add(new PictureBox());
+                playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
+                playerHandPictures.Last().Size = new Size(74, 99);
+                playerHandPictures.Last().Location = new Point(56 + i, 400);
+                this.Controls.Add(playerHandPictures.Last());
+                playerHandPictures.Last().BringToFront();
+                txtP1Points.Text = p1.Points.ToString();
+                MessageBox.Show("Player has Bust!");
+                NewRound();
+
+            }
+                       
                      
 
         }
@@ -220,9 +230,27 @@ namespace BlackJack.CLI
             playerHandPictures.Last().Image.RotateFlip(RotateFlipType.Rotate180FlipXY);
             txtDPoints.Text = de1.Points.ToString();
 
-            while (de1.Points<17)
-            {                
-                de1.Points=de1.Hit(d1);                
+            try
+            {
+                while (de1.Points < 17)
+                {
+                    de1.Points = de1.Hit(d1);
+                    dealerdHandPictures.Add(new PictureBox());
+                    dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
+                    dealerdHandPictures.Last().Size = new Size(74, 99);
+                    dealerdHandPictures.Last().Location = new Point(56 + d, 150);
+                    dealerdHandPictures.Last().Image.RotateFlip(RotateFlipType.Rotate180FlipXY);
+
+                    this.Controls.Add(dealerdHandPictures.Last());
+                    dealerdHandPictures.Last().BringToFront();
+
+                    txtDPoints.Text = de1.Points.ToString();
+                    d = d + 20;
+                }
+
+            }
+            catch (DealerPointsOutOfRangeException ex)
+            {
                 dealerdHandPictures.Add(new PictureBox());
                 dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
                 dealerdHandPictures.Last().Size = new Size(74, 99);
@@ -234,15 +262,13 @@ namespace BlackJack.CLI
 
                 txtDPoints.Text = de1.Points.ToString();
                 d = d + 20;
-            }
-
-            if (Bust(de1) == true)
-            {
-                p1.Stack = p1.Stack + p1.Bet*2;
-                NewRound();
-            }
-            else
+                MessageBox.Show("Dealer has Bust!");
                 WhoWon();
+            }
+            
+            WhoWon();
+
+
 
 
 
@@ -279,54 +305,52 @@ namespace BlackJack.CLI
             d1.Shuffle();
         }
 
-        public bool Bust(Player currentPlayer)
-        {
-            if (currentPlayer.Points > 21)
-            {
-                MessageBox.Show("Bust!");
-                return true;
-            }
-            else
-                return false;
+        
 
-        }
+        /*
+         * metodo per capire chi ha vinto se il giocatore non ha "bustato"
+         */
 
         public void WhoWon()
         {
-            if (p1.Points>de1.Points)
+            if(de1.IsBust)
             {
-                MessageBox.Show(p1.Name+" "+"ha vinto");
-                p1.Stack = p1.Stack + p1.Bet * 2;
-            }
-            else if (de1.Points > p1.Points)
-            {
-                MessageBox.Show(p1.Name + " " + "ha perso");
+                if(p1.Points==21 && p1.Hand.Count==2)
+                {
+                    MessageBox.Show("21 vittoria, grande baldoria!");
+                    p1.Stack = p1.Stack + p1.Bet + p1.Bet * 1.5;
+                }
+                else
+                {
+                    p1.Stack = p1.Stack + p1.Bet * 2;
+                }
             }
             else
             {
-                MessageBox.Show("Pareggio");
-                p1.Stack = p1.Stack + p1.Bet;
+                if (p1.Points == 21 && p1.Hand.Count == 2 && de1.Points!=21)
+                {
+                    MessageBox.Show("21 vittoria, grande baldoria!");
+                    p1.Stack = p1.Stack + p1.Bet + p1.Bet * 1.5;
+                }
+                else if (p1.Points > de1.Points)
+                {
+                    p1.Stack = p1.Stack + p1.Bet * 2;
+                    MessageBox.Show("Il giocatore ha vinto");
+                }
+                else if (p1.Points == de1.Points)
+                {
+                    p1.Stack = p1.Stack + p1.Bet;
+                    MessageBox.Show("Pareggio");
+
+                }
+                else
+                    MessageBox.Show("Il giocatore ha perso");
+                
             }
             NewRound();
         }
 
-        public void BlackJack()
-        {
-            if (p1.Hand.Count == 2 && p1.Points == 21 && p1.Points != de1.Points)
-            {
-                MessageBox.Show("21 vittoria, grande baldoria!");
-                p1.Stack = p1.Stack + p1.Bet + p1.Bet * 1.5;
-                NewRound();
-            }
-            else if (p1.Hand.Count == 2 && p1.Points == 21 && p1.Points == de1.Points && de1.Hand.Count == 2)
-            {
-                MessageBox.Show("Pareggio");
-                p1.Stack = p1.Stack + p1.Bet;
-                NewRound();
-            }
-            else WhoWon();
-
-        }
+        
 
 
 

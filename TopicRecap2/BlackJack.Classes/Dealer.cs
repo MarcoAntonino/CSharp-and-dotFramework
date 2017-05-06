@@ -26,6 +26,12 @@ namespace BlackJack.Classes
 
             }
             Points = Points + Hand.Last().Point;
+            if (Points > 21)
+            {
+                IsBust = true;
+                throw new DealerPointsOutOfRangeException(string.Format("Il dealer ha superato il punteggio di 21"));
+            }
+                
             return Points;
         }
     }

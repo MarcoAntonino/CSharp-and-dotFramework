@@ -11,7 +11,7 @@ namespace BlackJack.Classes
         public int Points { get; set; }
         public List<Card> Hand { get; set; }
         private bool Natural { get; set; }
-        public bool Bust { get; set; }
+        public bool IsBust { get; set; }
 
         public Player ()
         {
@@ -21,6 +21,8 @@ namespace BlackJack.Classes
         }
 
         public abstract int Hit(Deck currentDeck);
+
+        
        
                 
 
