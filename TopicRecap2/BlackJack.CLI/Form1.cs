@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace BlackJack.CLI
 {
@@ -18,6 +20,12 @@ namespace BlackJack.CLI
     {
         private List<PictureBox> playerHandPictures = new List<PictureBox>();//to control the view of the player hand
         public List<PictureBox> dealerdHandPictures = new List<PictureBox>();//to control the view of the dealer hand
+        Deck d1 = new Deck();
+        HumanPlayer p1 = new HumanPlayer("Marco");
+        Dealer de1 = new Dealer();
+
+        Game gioco = new Game();
+        string fileName = "gamesHistorical";
 
         /*
          * IMPORTANT: 
@@ -52,9 +60,7 @@ namespace BlackJack.CLI
         }
 
         
-        Deck d1 = new Deck();
-        HumanPlayer p1 = new HumanPlayer("Marco");
-        Dealer de1 = new Dealer();
+        
 
 
         //just a test
@@ -93,11 +99,11 @@ namespace BlackJack.CLI
                         
         }
 
-        /// <summary>
+        /// <remark>
         /// After the player set's a bet, the game starts.
         /// This method simulates the ditribution of two cards each to the player and the dealer.
         /// It shows the points and the cards of the player but not the second card and its points of the dealer's hand (as written in BJ rules)
-        /// </summary>
+        /// </remark>
         public void FirstTwoRounds()
         {
             txtPlayerBet.Text = p1.Bet.ToString();
@@ -157,11 +163,11 @@ namespace BlackJack.CLI
 
         }
 
-        /// <summary>
+        /// <remark>
         /// After the first two turns the player can Hit or Stand.
         /// Every time this method is called, adds cards in the player's hand until his Points are >21. 
         /// If the Player points are >21, this method catches a custom exception and shows a message and calls the NewRound() method
-        /// </summary>
+        /// </remark>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Hit_Click(object sender, EventArgs e)
@@ -190,6 +196,8 @@ namespace BlackJack.CLI
                 playerHandPictures.Last().BringToFront();
                 txtP1Points.Text = p1.Points.ToString();
                 MessageBox.Show("Player has Bust!");
+                gioco.EndDate = DateTime.Now;
+                DealerWins();
                 NewRound();
 
             }
@@ -198,9 +206,45 @@ namespace BlackJack.CLI
 
         }
 
-        /// <summary>
+        /// <remark>
+        /// Method that sets the Game object parameters for serialization
+        /// </remark>
+        public void DealerWins()
+        {
+            gioco.PlayerPoints = p1.Points;
+            gioco.DealerPoints = de1.Points;
+            gioco.WinnerName = "Dealer";
+            SaveAsXmlFormat(gioco, fileName);
+
+
+        }
+
+        /// <remark>
+        /// Method that sets the Game object parameters for serialization
+        /// </remark>
+        public void PlayerWins()
+        {
+            gioco.PlayerPoints = p1.Points;
+            gioco.DealerPoints = de1.Points;
+            gioco.WinnerName = p1.Name;
+            SaveAsXmlFormat(gioco, fileName);
+        }
+
+        /// <remark>
+        /// Method that sets the Game object parameters for serialization
+        /// </remark>
+        public void NoOneWins()
+        {
+            gioco.PlayerPoints = p1.Points;
+            gioco.DealerPoints = de1.Points;
+            gioco.WinnerName = "Draw";
+            SaveAsXmlFormat(gioco, fileName);
+
+        }
+
+        /// <remark>
         /// In case the player picks an ace, this method show a popup window to manually allow the player to choose the value of the ace
-        /// </summary>
+        /// </remark>
         public void PlayerAceValue()
         {
             if (p1.Hand.Last().Rank == Rank.Ace)
@@ -213,20 +257,21 @@ namespace BlackJack.CLI
             }
         }
 
-        /// <summary>
+        /// <remark>
         /// Pass a value of 1$ to the player bet property and starts the turn
-        /// </summary>
+        /// </remark>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnBet_Click(object sender, EventArgs e)
         {
+            gioco.StartDate = DateTime.Now;
             p1.SetBet(1);
             FirstTwoRounds();
         }
 
-        /// <summary>
+        /// <remark>
         /// Pass a value of 5$ to the player bet property and starts the turn
-        /// </summary>
+        /// </remark>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnBet5D_Click(object sender, EventArgs e)
@@ -235,9 +280,9 @@ namespace BlackJack.CLI
             FirstTwoRounds();
         }
 
-        /// <summary>
+        /// <remark>
         /// Pass a value of 25$ to the player bet property and starts the turn
-        /// </summary>
+        /// </remark>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnBet25D_Click(object sender, EventArgs e)
@@ -246,9 +291,9 @@ namespace BlackJack.CLI
             FirstTwoRounds();
         }
 
-        /// <summary>
+        /// <remark>
         /// Pass a value of 100$ to the player bet property and starts the turn
-        /// </summary>
+        /// </remark>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnBet100D_Click(object sender, EventArgs e)
@@ -272,14 +317,14 @@ namespace BlackJack.CLI
 
         }
 
-        /// <summary>
+        /// <remark>
         /// This method is called when the player decides to stop extracting cards from the deck.
         /// Now it's the dealer turn.
         /// This method shows the second card in the dealer hand and updates his current point.
         /// Then the dealer extracts cards from the dack until his points are >16, then he stops.
         /// If the dealer's point are >21 this method catches a custom exception and shows a message.
         /// At the end, this method calls the WhoWon() method
-        /// </summary>
+        /// </remark>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnStand_Click(object sender, EventArgs e)
@@ -332,11 +377,11 @@ namespace BlackJack.CLI
 
         }
 
-        /// <summary>
+        /// <remark>
         /// At the end of the dealer's turn, this method it's called to decide who won the game.
         /// The BJ rules for the victory are slightly differents from the teacher's requests, I've followed the online documentation.
         /// After the victory assignment, this method calls the NewRound() method
-        /// </summary>
+        /// </remark>
         public void WhoWon()
         {
             if(de1.IsBust)
@@ -345,10 +390,13 @@ namespace BlackJack.CLI
                 {
                     MessageBox.Show("21 vittoria, grande baldoria!");
                     p1.Stack = p1.Stack + p1.Bet + p1.Bet * 1.5;
+                    PlayerWins();
                 }
                 else
                 {
                     p1.Stack = p1.Stack + p1.Bet * 2;
+                    PlayerWins();
+
                 }
             }
             else
@@ -357,30 +405,37 @@ namespace BlackJack.CLI
                 {
                     MessageBox.Show("21 vittoria, grande baldoria!");
                     p1.Stack = p1.Stack + p1.Bet + p1.Bet * 1.5;
+                    PlayerWins();
+
                 }
                 else if (p1.Points > de1.Points)
                 {
-                    p1.Stack = p1.Stack + p1.Bet * 2;
                     MessageBox.Show("Il giocatore ha vinto");
+                    p1.Stack = p1.Stack + p1.Bet * 2;
+                    PlayerWins();
+
                 }
                 else if (p1.Points == de1.Points)
                 {
                     p1.Stack = p1.Stack + p1.Bet;
                     MessageBox.Show("Pareggio");
-
+                    NoOneWins();
                 }
                 else
+                {
                     MessageBox.Show("Il giocatore ha perso");
-                
+                    DealerWins();
+                }
+
             }
             NewRound();
         }
 
 
-        /// <summary>
+        /// <remark>
         /// This method it's called at the end of the game.
         /// It's reset all the game parameters
-        /// </summary>
+        /// </remark>
         public void NewRound()
         {
             btnHit.Enabled = false;
@@ -410,6 +465,22 @@ namespace BlackJack.CLI
 
             d1 = new Deck();
             d1.Shuffle();
+        }
+
+        /// <remark>
+        /// Method that saves game results in a xml file
+        /// </remark>
+        /// <param name="objGraph"></param>
+        /// <param name="fileName"></param>
+        static void SaveAsXmlFormat(object objGraph, string fileName)
+        {
+            XmlSerializer xmlFormat = new XmlSerializer(typeof(Game));
+
+            using (Stream fStream = new FileStream(fileName, FileMode.Append, FileAccess.Write, FileShare.None))
+            {
+                xmlFormat.Serialize(fStream, objGraph);
+            }
+
         }
 
 

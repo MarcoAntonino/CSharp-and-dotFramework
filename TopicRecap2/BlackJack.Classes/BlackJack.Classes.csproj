@@ -45,6 +45,7 @@
     <Compile Include="Dealer.cs" />
     <Compile Include="DealerPointsOutOfRangeException.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="HumanPlayer.cs" />
     <Compile Include="PlayerPointsOutOfRangeException.cs" />
