@@ -11,16 +11,24 @@ using System.Windows.Forms;
 
 namespace BlackJack.CLI
 {
+    /// <summary>
+    /// This form controls the program's logic
+    /// </summary>
     public partial class Form1 : Form
     {
-        private List<PictureBox> playerHandPictures = new List<PictureBox>();
-        public List<PictureBox> dealerdHandPictures = new List<PictureBox>();
-        public string machineImagePath = "C:\\Users\\NewMarco\\Documents\\ITS ICT\\CSharp-and-dotFramework\\TopicRecap2";
-        int i = 1;
-        int d = 1;
+        private List<PictureBox> playerHandPictures = new List<PictureBox>();//to control the view of the player hand
+        public List<PictureBox> dealerdHandPictures = new List<PictureBox>();//to control the view of the dealer hand
 
-        Form popUp = new AceValueChoice();
-        
+        /*
+         * IMPORTANT: 
+         * change the value of machineImagePath to match your actual project path
+         */
+        public string machineImagePath = "C:\\Users\\NewMarco\\Documents\\ITS ICT\\CSharp-and-dotFramework\\TopicRecap2";
+
+        int i = 1; //offset value for the Player's hand view
+        int d = 1; //offset value for the dealer's hand view
+
+        Form popUp = new AceValueChoice();   
 
 
         public Form1()
@@ -30,8 +38,8 @@ namespace BlackJack.CLI
             txtP1Points.Text = p1.Points.ToString();
             txtPlayerBet.Text = p1.Bet.ToString();
             lblP1Stack.Text = p1.Stack.ToString();
-            btnHit.Enabled = false;
-            btnStand.Enabled = false;
+            btnHit.Enabled = false; // your first move cannot be hit
+            btnStand.Enabled = false; // your first move cannot be stand
 
 
         }
@@ -48,6 +56,8 @@ namespace BlackJack.CLI
         HumanPlayer p1 = new HumanPlayer("Marco");
         Dealer de1 = new Dealer();
 
+
+        //just a test
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -67,39 +77,7 @@ namespace BlackJack.CLI
 
         }
 
-        private void Hit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                p1.Hit(d1);
-                PlayerAceValue();
-                playerHandPictures.Add(new PictureBox());
-                playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
-                playerHandPictures.Last().Size = new Size(74, 99);
-                playerHandPictures.Last().Location = new Point(56 + i, 400);
-                this.Controls.Add(playerHandPictures.Last());
-                playerHandPictures.Last().BringToFront();
-                txtP1Points.Text = p1.Points.ToString();
-                i = i + 20;
-            }
-            catch (PlayerPointsOutOfRangeException ex)
-            {
-                
-                playerHandPictures.Add(new PictureBox());
-                playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
-                playerHandPictures.Last().Size = new Size(74, 99);
-                playerHandPictures.Last().Location = new Point(56 + i, 400);
-                this.Controls.Add(playerHandPictures.Last());
-                playerHandPictures.Last().BringToFront();
-                txtP1Points.Text = p1.Points.ToString();
-                MessageBox.Show("Player has Bust!");
-                NewRound();
-
-            }
-                       
-                     
-
-        }
+        
 
         
 
@@ -115,12 +93,17 @@ namespace BlackJack.CLI
                         
         }
 
+        /// <summary>
+        /// After the player set's a bet, the game starts.
+        /// This method simulates the ditribution of two cards each to the player and the dealer.
+        /// It shows the points and the cards of the player but not the second card and its points of the dealer's hand (as written in BJ rules)
+        /// </summary>
         public void FirstTwoRounds()
         {
             txtPlayerBet.Text = p1.Bet.ToString();
             lblP1Stack.Text = p1.Stack.ToString();
 
-            //Primo giro
+            //First turn
             d1.Shuffle();
             p1.Hit(d1);
             PlayerAceValue();
@@ -130,7 +113,7 @@ namespace BlackJack.CLI
             playerHandPictures.Last().Location = new Point(56 + i, 400);
             this.Controls.Add(playerHandPictures.Last());
             txtP1Points.Text = p1.Points.ToString();
-            i = i + 20;
+            i = i + 20; //increments the offset value
 
             de1.Hit(d1);
             dealerdHandPictures.Add(new PictureBox());
@@ -141,7 +124,7 @@ namespace BlackJack.CLI
             txtDPoints.Text = de1.Points.ToString();
             d = d + 20;
 
-            //Secondo giro
+            //Second turn
             p1.Hit(d1);
             PlayerAceValue();
             playerHandPictures.Add(new PictureBox());
@@ -164,6 +147,7 @@ namespace BlackJack.CLI
             dealerdHandPictures.Last().BringToFront();
             d = d + 20;
 
+            //The player can't bet during a turn
             btnBet1D.Enabled = false;
             btnBet5D.Enabled = false;
             btnBet25D.Enabled = false;
@@ -173,6 +157,50 @@ namespace BlackJack.CLI
 
         }
 
+        /// <summary>
+        /// After the first two turns the player can Hit or Stand.
+        /// Every time this method is called, adds cards in the player's hand until his Points are >21. 
+        /// If the Player points are >21, this method catches a custom exception and shows a message and calls the NewRound() method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Hit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                p1.Hit(d1);
+                PlayerAceValue();
+                playerHandPictures.Add(new PictureBox());
+                playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
+                playerHandPictures.Last().Size = new Size(74, 99);
+                playerHandPictures.Last().Location = new Point(56 + i, 400);
+                this.Controls.Add(playerHandPictures.Last());
+                playerHandPictures.Last().BringToFront();
+                txtP1Points.Text = p1.Points.ToString();
+                i = i + 20;
+            }
+            catch (PlayerPointsOutOfRangeException ex)
+            {
+
+                playerHandPictures.Add(new PictureBox());
+                playerHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + p1.Hand.Last().Suit + "\\" + p1.Hand.Last().Rank + ".jpg");
+                playerHandPictures.Last().Size = new Size(74, 99);
+                playerHandPictures.Last().Location = new Point(56 + i, 400);
+                this.Controls.Add(playerHandPictures.Last());
+                playerHandPictures.Last().BringToFront();
+                txtP1Points.Text = p1.Points.ToString();
+                MessageBox.Show("Player has Bust!");
+                NewRound();
+
+            }
+
+
+
+        }
+
+        /// <summary>
+        /// In case the player picks an ace, this method show a popup window to manually allow the player to choose the value of the ace
+        /// </summary>
         public void PlayerAceValue()
         {
             if (p1.Hand.Last().Rank == Rank.Ace)
@@ -184,25 +212,45 @@ namespace BlackJack.CLI
                 p1.Points = (p1.Points - 1) + p1.Hand.Last().Point;
             }
         }
-              
+
+        /// <summary>
+        /// Pass a value of 1$ to the player bet property and starts the turn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBet_Click(object sender, EventArgs e)
         {
             p1.SetBet(1);
             FirstTwoRounds();
         }
 
+        /// <summary>
+        /// Pass a value of 5$ to the player bet property and starts the turn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBet5D_Click(object sender, EventArgs e)
         {
             p1.SetBet(5);
             FirstTwoRounds();
         }
 
+        /// <summary>
+        /// Pass a value of 25$ to the player bet property and starts the turn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBet25D_Click(object sender, EventArgs e)
         {
             p1.SetBet(25);
             FirstTwoRounds();
         }
 
+        /// <summary>
+        /// Pass a value of 100$ to the player bet property and starts the turn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBet100D_Click(object sender, EventArgs e)
         {
             p1.SetBet(100);
@@ -224,6 +272,16 @@ namespace BlackJack.CLI
 
         }
 
+        /// <summary>
+        /// This method is called when the player decides to stop extracting cards from the deck.
+        /// Now it's the dealer turn.
+        /// This method shows the second card in the dealer hand and updates his current point.
+        /// Then the dealer extracts cards from the dack until his points are >16, then he stops.
+        /// If the dealer's point are >21 this method catches a custom exception and shows a message.
+        /// At the end, this method calls the WhoWon() method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStand_Click(object sender, EventArgs e)
         {
             dealerdHandPictures.Last().Image = Image.FromFile(machineImagePath + "\\BlackJack.CLI\\Cards\\" + de1.Hand.Last().Suit + "\\" + de1.Hand.Last().Rank + ".jpg");
@@ -274,43 +332,11 @@ namespace BlackJack.CLI
 
         }
 
-        public void NewRound()
-        {
-            btnHit.Enabled = false;
-            btnBet1D.Enabled = true;
-            btnBet5D.Enabled = true;
-            btnBet25D.Enabled = true;
-            btnBet100D.Enabled = true;
-            p1.Hand.Clear();
-            p1.Points = 0;
-            txtP1Points.Text= p1.Points.ToString();
-            p1.Bet = 0;
-            txtPlayerBet.Text = p1.Bet.ToString();
-            lblP1Stack.Text = p1.Stack.ToString();
-            de1.Points = 0;
-            txtDPoints.Text = de1.Points.ToString(); 
-            foreach (PictureBox p in playerHandPictures)
-                this.Controls.Remove(p);
-            playerHandPictures.Clear();           
-            i = 1;
-
-            de1.Hand.Clear();
-            de1.Points = 0;
-            foreach (PictureBox p in dealerdHandPictures)
-                this.Controls.Remove(p);
-            dealerdHandPictures.Clear();
-            d = 1;
-
-            d1 = new Deck();
-            d1.Shuffle();
-        }
-
-        
-
-        /*
-         * metodo per capire chi ha vinto se il giocatore non ha "bustato"
-         */
-
+        /// <summary>
+        /// At the end of the dealer's turn, this method it's called to decide who won the game.
+        /// The BJ rules for the victory are slightly differents from the teacher's requests, I've followed the online documentation.
+        /// After the victory assignment, this method calls the NewRound() method
+        /// </summary>
         public void WhoWon()
         {
             if(de1.IsBust)
@@ -350,7 +376,43 @@ namespace BlackJack.CLI
             NewRound();
         }
 
-        
+
+        /// <summary>
+        /// This method it's called at the end of the game.
+        /// It's reset all the game parameters
+        /// </summary>
+        public void NewRound()
+        {
+            btnHit.Enabled = false;
+            btnBet1D.Enabled = true;
+            btnBet5D.Enabled = true;
+            btnBet25D.Enabled = true;
+            btnBet100D.Enabled = true;
+            p1.Hand.Clear();
+            p1.Points = 0;
+            txtP1Points.Text = p1.Points.ToString();
+            p1.Bet = 0;
+            txtPlayerBet.Text = p1.Bet.ToString();
+            lblP1Stack.Text = p1.Stack.ToString();
+            de1.Points = 0;
+            txtDPoints.Text = de1.Points.ToString();
+            foreach (PictureBox p in playerHandPictures)
+                this.Controls.Remove(p);
+            playerHandPictures.Clear();
+            i = 1;
+
+            de1.Hand.Clear();
+            de1.Points = 0;
+            foreach (PictureBox p in dealerdHandPictures)
+                this.Controls.Remove(p);
+            dealerdHandPictures.Clear();
+            d = 1;
+
+            d1 = new Deck();
+            d1.Shuffle();
+        }
+
+
 
 
 

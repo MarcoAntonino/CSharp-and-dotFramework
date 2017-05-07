@@ -12,6 +12,9 @@ using BlackJack.Classes;
 
 namespace BlackJack.CLI
 {
+    /// <summary>
+    /// This form it's generated every time a HumanPlayer extracts an ace from the deck and allows to the HumanPlayer to manually set the points of the ace card 
+    /// </summary>
     public partial class AceValueChoice : Form
     {
         public int aceValue;
