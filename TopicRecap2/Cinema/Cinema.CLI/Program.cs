@@ -11,10 +11,14 @@ namespace Cinema.CLI
     {
         private static List<ScreeningRoom> screeningRooms;
         //la console app è 
-
-        private static int[] timeRanges = new int[] { 19, 22, 24 };
+                                                     //19   //21    //24
+       // private static int[] timeRanges = new int[] { 1140, 1320, 1440 };
 
         private const int DELAY_TIME = 30;
+        private const int FIRST_PROJECTION = 1080;
+        private const int LAST_PROJECTION = 1470;
+        private const int PREFERRED_START = 1140;
+
 
         static void Main(string[] args)
         {
@@ -51,18 +55,26 @@ namespace Cinema.CLI
             powerRangersFilm.Duration = 125;
             powerRangersFilm.Is3D = false; //superfluo   
 
+            Film DancesWithWolfesFilm = new Film();
+            DancesWithWolfesFilm.Title = "Dances With Wolfes";
+            DancesWithWolfesFilm.Genre = FilmGenre.Action;
+            DancesWithWolfesFilm.Duration = 236;
+            DancesWithWolfesFilm.Is3D = false; //superfluo  
+
             Schedule PowerRangersSchedule = new Schedule();
             PowerRangersSchedule.Film = powerRangersFilm;
             PowerRangersSchedule.ScreeningRoom = GetScreeningRoombyName("3");
-            PowerRangersSchedule.SetHour(20, 05);
+            PowerRangersSchedule.SetHour(timeRanges[timeRanges.Length],0);
             PowerRangersSchedule.NumberOfAvailableSeats = PowerRangersSchedule.ScreeningRoom.NumberOfSeats;
 
 
-            int startTime= timeRanges[0];
-            for (int i=1; i<timeRanges.Length; i++)
-            {
-                //trova un metodo...
-            }       
+           
+            int maxLenght = LAST_PROJECTION - FIRST_PROJECTION;
+            if(maxLenght/(DancesWithWolfesFilm.Duration+30)+1>=3)
+                if(FIRST_PROJECTION+(DancesWithWolfesFilm.Duration+30)*2<LAST_PROJECTION)
+                {
+
+                }
 
            
         }
