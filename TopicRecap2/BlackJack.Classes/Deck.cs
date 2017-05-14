@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Classes
 {
+    /// <summary>
+    /// The class deck is an list of the objects card.
+    /// </summary>
     public class Deck
     {
         List<Card> deck = new List<Card>();
 
-        /*
-         * Create a deck creating an object card for every suit and every rank
-         */
+        
          
         public Deck()
         {
@@ -25,6 +26,10 @@ namespace BlackJack.Classes
             }
         }
 
+        /// <remarks>
+        /// As its name says, this method shuffles the members of the deck list using a random value to choose
+        /// which cards shuffle and a temporary card object to make the change of position possibile 
+        /// </remarks>
         public void Shuffle()
         {
             Random rnd = new Random();
@@ -40,6 +45,11 @@ namespace BlackJack.Classes
             }
         }
 
+        /// <remarks>
+        /// This method create a new object Card, called extractedCard which is the first card in the deck.
+        /// Once the extractedCard is created, his copy is removed from the deck
+        /// </remarks>
+        /// <returns>A copy of the first card of the deck</returns>
         public Card Extract()
 
         {   
