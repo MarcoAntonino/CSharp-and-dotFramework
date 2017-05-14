@@ -15,7 +15,7 @@ namespace BlackJack.CLI
     {
         private List<PictureBox> playerHandPictures = new List<PictureBox>();
         public List<PictureBox> dealerdHandPictures = new List<PictureBox>();
-        public string machineImagePath = "C:\\Users\\NewMarco\\Documents\\ITS ICT\\CSharp-and-dotFramework\\TopicRecap2";
+        public string machineImagePath = "D:\\Utenti\\Nuova cartella\\ITS\\CSharp-and-dotFramework\\TopicRecap2";
         int i = 1;
         int d = 1;
 
