@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca", "Biblioteca\Biblioteca.csproj", "{A445E1B4-970F-4CB2-A6BB-D08CA932E5AE}"
 EndProject
@@ -22,6 +22,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackJack.Classes", "BlackJack.Classes\BlackJack.Classes.csproj", "{C2005EF1-D95E-491E-81CD-3DD59E0CA357}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorsePuzzleWinForms", "..\..\..\..\Downloads\HorsePuzzleWinFormsOOP\HorsePuzzleWinFormsOOP\HorsePuzzleWinForms\HorsePuzzleWinForms.csproj", "{5CC4A483-FB5B-44EA-8675-AC9014C311FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prove", "Prove\Prove.csproj", "{541FC00D-A085-4308-8900-77948237E70A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prove1", "Prove1", "{48B6E1FA-769C-4DC1-B77C-D47626762B54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinglePageModel", "Prove\9781484213339_Ch31_CodeSamples\SinglePageModel\SinglePageModel\SinglePageModel.csproj", "{419CE338-C91B-402B-8FE3-65838EB4EEAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLotDAL", "Prove\9781484213339_Ch31_CodeSamples\SinglePageModel\AutoLotDAL\AutoLotDAL.csproj", "{29C6F0F4-94E3-4C30-9DB9-02D340ACE46A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +69,18 @@ Global
 		{5CC4A483-FB5B-44EA-8675-AC9014C311FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CC4A483-FB5B-44EA-8675-AC9014C311FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CC4A483-FB5B-44EA-8675-AC9014C311FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{541FC00D-A085-4308-8900-77948237E70A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{541FC00D-A085-4308-8900-77948237E70A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{541FC00D-A085-4308-8900-77948237E70A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{541FC00D-A085-4308-8900-77948237E70A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{419CE338-C91B-402B-8FE3-65838EB4EEAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{419CE338-C91B-402B-8FE3-65838EB4EEAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{419CE338-C91B-402B-8FE3-65838EB4EEAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{419CE338-C91B-402B-8FE3-65838EB4EEAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29C6F0F4-94E3-4C30-9DB9-02D340ACE46A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C6F0F4-94E3-4C30-9DB9-02D340ACE46A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29C6F0F4-94E3-4C30-9DB9-02D340ACE46A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29C6F0F4-94E3-4C30-9DB9-02D340ACE46A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,5 +90,7 @@ Global
 		{5D5EE655-6605-4B2A-96F7-41AB329828BB} = {F6AEAC6E-B999-40DE-89BC-DAC1440C0B77}
 		{9B5E0233-2344-4A23-9B3B-F67A9941A9BF} = {823C17B0-910A-4453-8007-0D0A8AB273EB}
 		{C2005EF1-D95E-491E-81CD-3DD59E0CA357} = {823C17B0-910A-4453-8007-0D0A8AB273EB}
+		{419CE338-C91B-402B-8FE3-65838EB4EEAC} = {48B6E1FA-769C-4DC1-B77C-D47626762B54}
+		{29C6F0F4-94E3-4C30-9DB9-02D340ACE46A} = {48B6E1FA-769C-4DC1-B77C-D47626762B54}
 	EndGlobalSection
 EndGlobal
