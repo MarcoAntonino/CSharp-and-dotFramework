@@ -18,13 +18,7 @@ namespace BlackJack.CLI
     /// </summary>
     public partial class Form1 : Form
     {
-<<<<<<< HEAD
-        private List<PictureBox> playerHandPictures = new List<PictureBox>();
-        public List<PictureBox> dealerdHandPictures = new List<PictureBox>();
-        public string machineImagePath = "D:\\Utenti\\Nuova cartella\\ITS\\CSharp-and-dotFramework\\TopicRecap2";
-        int i = 1;
-        int d = 1;
-=======
+
         private List<PictureBox> playerHandPictures = new List<PictureBox>();//to control the view of the player hand
         public List<PictureBox> dealerdHandPictures = new List<PictureBox>();//to control the view of the dealer hand
         Deck d1 = new Deck();
@@ -39,7 +33,6 @@ namespace BlackJack.CLI
          * change the value of machineImagePath to match your actual project path
          */
         public string machineImagePath = "C:\\Users\\NewMarco\\Documents\\ITS ICT\\CSharp-and-dotFramework\\TopicRecap2";
->>>>>>> e4a829e4071c1db7630ba53181a2d160944535b0
 
         int i = 1; //offset value for the Player's hand view
         int d = 1; //offset value for the dealer's hand view
@@ -203,7 +196,7 @@ namespace BlackJack.CLI
                 this.Controls.Add(playerHandPictures.Last());
                 playerHandPictures.Last().BringToFront();
                 txtP1Points.Text = p1.Points.ToString();
-                MessageBox.Show("Player has Bust!");
+                MessageBox.Show(this, "Player has Bust!");
                 gioco.EndDate = DateTime.Now;
                 DealerWins();
                 NewRound();
