@@ -33,9 +33,12 @@ namespace BlackJack.CLI
          * change the value of machineImagePath to match your actual project path
          */
         public string machineImagePath = "C:\\Users\\NewMarco\\Documents\\ITS ICT\\CSharp-and-dotFramework\\TopicRecap2";
+<<<<<<< HEAD
         //public string machineImagePath  = AppDomain.CurrentDomain.BaseDirectory + @"..\..\TopicRecap2";
 
         string ciao = AppDomain.CurrentDomain.BaseDirectory + @"..\..\TopicRecap2";
+=======
+>>>>>>> 4e3a3834b4b029ec5c0d15d653b82d5a0a0f4e91
 
         int i = 1; //offset value for the Player's hand view
         int d = 1; //offset value for the dealer's hand view
@@ -199,7 +202,7 @@ namespace BlackJack.CLI
                 this.Controls.Add(playerHandPictures.Last());
                 playerHandPictures.Last().BringToFront();
                 txtP1Points.Text = p1.Points.ToString();
-                MessageBox.Show("Player has Bust!");
+                MessageBox.Show(this, "Player has Bust!");
                 gioco.EndDate = DateTime.Now;
                 DealerWins();
                 NewRound();
