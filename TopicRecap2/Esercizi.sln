@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.4
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca", "Biblioteca\Biblioteca.csproj", "{A445E1B4-970F-4CB2-A6BB-D08CA932E5AE}"
 EndProject
@@ -28,6 +28,29 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Prove1", "Prove1", "{48B6E1FA-769C-4DC1-B77C-D47626762B54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstWebApp", "MyFirstWebApp\MyFirstWebApp.csproj", "{67230B21-5149-4D3D-AF7E-C8EEAD1C4E7F}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Cinema.Web", "Cinema\Cinema.Web\", "{B031026F-4F0B-4C56-8F7D-7C7B5FAF6B67}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6"
+		ProjectReferences = "{e9c9d508-68b4-4a61-856a-d48746bd3232}|Cinema.Classes.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_51278"
+		Debug.AspNetCompiler.PhysicalPath = "Cinema\Cinema.Web\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51278\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_51278"
+		Release.AspNetCompiler.PhysicalPath = "Cinema\Cinema.Web\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51278\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "51278"
+		SlnRelativePath = "Cinema\Cinema.Web\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +98,10 @@ Global
 		{67230B21-5149-4D3D-AF7E-C8EEAD1C4E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67230B21-5149-4D3D-AF7E-C8EEAD1C4E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67230B21-5149-4D3D-AF7E-C8EEAD1C4E7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B031026F-4F0B-4C56-8F7D-7C7B5FAF6B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B031026F-4F0B-4C56-8F7D-7C7B5FAF6B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B031026F-4F0B-4C56-8F7D-7C7B5FAF6B67}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B031026F-4F0B-4C56-8F7D-7C7B5FAF6B67}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,5 +112,6 @@ Global
 		{9B5E0233-2344-4A23-9B3B-F67A9941A9BF} = {823C17B0-910A-4453-8007-0D0A8AB273EB}
 		{C2005EF1-D95E-491E-81CD-3DD59E0CA357} = {823C17B0-910A-4453-8007-0D0A8AB273EB}
 		{67230B21-5149-4D3D-AF7E-C8EEAD1C4E7F} = {48B6E1FA-769C-4DC1-B77C-D47626762B54}
+		{B031026F-4F0B-4C56-8F7D-7C7B5FAF6B67} = {F6AEAC6E-B999-40DE-89BC-DAC1440C0B77}
 	EndGlobalSection
 EndGlobal

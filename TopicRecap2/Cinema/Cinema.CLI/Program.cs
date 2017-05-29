@@ -14,6 +14,7 @@ namespace Cinema.CLI
 {
     class Program
     {
+        private const string APIURL = "http://api-public.guidebox.com/v2/movies?api_key=7cc3c17336de0377ab4eac370071e01e552d4eef&region=IT";
         private static List<ScreeningRoom> screeningRooms;
         //la console app è 
                                                      //19   //21    //24
@@ -54,7 +55,7 @@ namespace Cinema.CLI
 
         private static void LoadSchedules()
         {
-            FilmCollection filmsCollection = makeRequest(createRequest());
+            FilmCollection filmsCollection = Utility.MakeRequest<FilmCollection> (APIURL);
             filmsCollection.RequestWikipediaUrl();
             Film powerRangersFilm = new Film();
             powerRangersFilm.Title = "Power Rangers";
@@ -107,41 +108,21 @@ namespace Cinema.CLI
              */
         }
 
-        private static string createRequest(string queryString=null)
-        {
-            //string urlRequest = "http://www.cinetecadibologna.it/api/GetSchedule/"+queryString;
-            string urlRequest = "http://api-public.guidebox.com/v2/movies?api_key=7cc3c17336de0377ab4eac370071e01e552d4eef&region=IT" + queryString;
-            return urlRequest;
-        }
+        //private static string createRequest(string queryString=null)
+        //{
+        //    //string urlRequest = "http://www.cinetecadibologna.it/api/GetSchedule/"+queryString;
+        //    string urlRequest = "http://api-public.guidebox.com/v2/movies?api_key=7cc3c17336de0377ab4eac370071e01e552d4eef&region=IT" + queryString;
+        //    return urlRequest;
+        //}
 
         /*
          * Una classe che ci permette di gestire un doc xml
          */
 
-        private static FilmCollection makeRequest(string requestUrl)
-        {
-            try
-            {
-                HttpWebRequest request = WebRequest.Create(requestUrl) as HttpWebRequest;
-                //as ci permette di definire un cast al volo a un altro type
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(FilmCollection)); 
-                
-                return (FilmCollection)serializer.ReadObject(response.GetResponseStream());
-                
-            }
-            catch (HttpListenerException e) {
-                return null;
-            }
-            catch (InvalidOperationException ex) {
-                
-                return null;
-
-            }
-        }
-
         
+
+
+
 
     }
 }

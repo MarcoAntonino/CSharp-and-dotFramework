@@ -9,4 +9,6 @@ namespace Cinema.Classes
         [DataMember(Name = "pages")]
         public Dictionary<string, Page> Pages { get; set; }
     }
+
+    
 }

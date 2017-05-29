@@ -33,38 +33,32 @@ namespace Cinema.Classes
             string standardLinkFormat = "https://en.wikipedia.org/w/api.php?action=query&prop=info&pageids={0}&inprop=url&format=json";
             standardLinkFormat = string.Format(standardLinkFormat, ids);
 
+            WikipediaResponse wikiResponse = Utility.MakeRequest < WikipediaResponse >(standardLinkFormat, true);
+            matchWikiIDWithWikiURL(wikiResponse);
+
             return standardLinkFormat;
 
         }
 
-        private WikipediaResponse makeRequest(string requestUrl)
+        private void matchWikiIDWithWikiURL (WikipediaResponse wikiResponse)
         {
-            try
+            foreach (KeyValuePair<string, Page> kvpage in wikiResponse.Query.Pages)
             {
-                HttpWebRequest request = WebRequest.Create(requestUrl) as HttpWebRequest;
-                //as ci permette di definire un cast al volo a un altro type
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(WikipediaResponse));
-
-                return (WikipediaResponse)serializer.ReadObject(response.GetResponseStream());
-                /*
-                 * Data la wikiresponse bisognerà ciclcare su tutti gli oggetti del dictionary pages presente all'interno di query
-                 * e in qualche modo abbinarli con i dati che abbiamo dall'altra parte (nella rista results)
-                 */
-
-            }
-            catch (HttpListenerException e)
-            {
-                return null;
-            }
-            catch (InvalidOperationException ex)
-            {
-
-                return null;
-
+                foreach ( Film film in Results)
+                {
+                    if(film.WikipediaId == kvpage.Value.PageId)
+                    {
+                        film.WikipediaUrl = kvpage.Value.FullUrl;
+                    }
+                }
             }
         }
+
+
+
+        
+
+        
 
     }
 }

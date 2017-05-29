@@ -8,6 +8,10 @@ using System.Runtime.Serialization;
 namespace Cinema.Classes
 {
     [DataContract] // NB
+    /*
+     * Questa classe specifica un contratto.
+     * Datamember va specificato per ogni proprietà che vogliamo mappare
+     */
     
     public class Film
     {

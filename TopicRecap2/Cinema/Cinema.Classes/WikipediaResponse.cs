@@ -11,6 +11,6 @@ namespace Cinema.Classes
     public class WikipediaResponse
     {
         [DataMember(Name = "query")]
-        public Query TheQuery { get; set; }
+        public Query Query { get; set; }
     }
 }
