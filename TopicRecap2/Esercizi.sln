@@ -52,6 +52,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Cinema.Web", "Cinema\Cinema
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarDelegate", "CarDelegate\CarDelegate.csproj", "{032E1843-92ED-4179-A886-E59E5233880A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,10 @@ Global
 		{B031026F-4F0B-4C56-8F7D-7C7B5FAF6B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B031026F-4F0B-4C56-8F7D-7C7B5FAF6B67}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{B031026F-4F0B-4C56-8F7D-7C7B5FAF6B67}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{032E1843-92ED-4179-A886-E59E5233880A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032E1843-92ED-4179-A886-E59E5233880A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032E1843-92ED-4179-A886-E59E5233880A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032E1843-92ED-4179-A886-E59E5233880A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,5 +119,6 @@ Global
 		{C2005EF1-D95E-491E-81CD-3DD59E0CA357} = {823C17B0-910A-4453-8007-0D0A8AB273EB}
 		{67230B21-5149-4D3D-AF7E-C8EEAD1C4E7F} = {48B6E1FA-769C-4DC1-B77C-D47626762B54}
 		{B031026F-4F0B-4C56-8F7D-7C7B5FAF6B67} = {F6AEAC6E-B999-40DE-89BC-DAC1440C0B77}
+		{032E1843-92ED-4179-A886-E59E5233880A} = {48B6E1FA-769C-4DC1-B77C-D47626762B54}
 	EndGlobalSection
 EndGlobal
