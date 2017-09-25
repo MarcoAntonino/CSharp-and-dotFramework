@@ -207,7 +207,7 @@ namespace BlackJack.CLI
                 MessageBox.Show(this, "Player has Bust!");
                 gioco.EndDate = DateTime.Now;
                 DealerWins();
-                NewRound();
+                NewRound();                
 
             }
 

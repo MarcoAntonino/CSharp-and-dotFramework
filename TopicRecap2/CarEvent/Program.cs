@@ -10,12 +10,21 @@ namespace CarEvent
     {
         static void Main(string[] args)
         {
-            Car c1 = new Car("Carolina", 10, 100);
+            Car c1 = new Car("Caroline", 10, 100);
 
             c1.AboutToBlow += CarIsAlmostDoomed;
-            c1.AboutToBlow += CarAboutToBlow;
+            c1.AboutToBlow += delegate(object sender, CarEventArgs e)
+            {
+                Console.WriteLine(e.msg.ToUpper());
+            };
 
             c1.Exploded += CarExploded;
+            c1.Exploded += delegate
+            {
+                Console.WriteLine("Rust in peace {0}", c1.Petname);
+            };
+
+            c1.Exploded += (sender, e) => Console.WriteLine(e.msg.ToUpper()+"Thanks to lambda"); //lambda
 
             Console.WriteLine("***** Speeding Up *****");
             for (int i = 0; i < 6; i++)
@@ -30,10 +39,7 @@ namespace CarEvent
             Console.WriteLine("{0} says: {1}", sender, e.msg);
         }
 
-        private static void CarAboutToBlow(object sender, CarEventArgs e)
-        {
-            Console.WriteLine("{0} says: {1}", sender, e.msg);
-        }
+        
 
         private static void CarIsAlmostDoomed(object sender, CarEventArgs e)
         {
