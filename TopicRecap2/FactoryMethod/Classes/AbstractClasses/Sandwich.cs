@@ -7,18 +7,15 @@ namespace FactoryMethod.Classes.AbstractClasses
     /// </summary>
     abstract class Sandwich
     {
-        private List<Ingredient> _ingredients = new List<Ingredient>();
+        public List<Ingredient> Ingredients { get; private set; }
 
         public Sandwich()
         {
+            Ingredients = new List<Ingredient>();
             CreateIngredients();
         }
 
         public abstract void CreateIngredients();
-
-        public List<Ingredient> Ingredients
-        {
-            get { return _ingredients; }
-        }
+        
     }
 }
