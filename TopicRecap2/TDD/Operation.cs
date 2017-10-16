@@ -17,5 +17,10 @@ namespace TDD
         {
             return numberOne - numberTwo;
         }
+
+        internal int Mult(int numberOne, int numberTwo)
+        {
+            return numberOne * numberTwo;
+        }
     }
 }
